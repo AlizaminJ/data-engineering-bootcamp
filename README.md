@@ -33,7 +33,7 @@ docker  build -t MY_IMAGE:1.0 .
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
-    -e POSTGRES_DB="nav" \
+    -e POSTGRES_DB="demo" \
     -v POSTGRES_DATA:/var/lib/postgresql/data \
     -p 5432:5432 \
     --network=pg-network \
