@@ -20,7 +20,7 @@ docker network create pg-network
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
-    -e POSTGRES_DB="demo" \
+    -e POSTGRES_DB="ny_taxi" \
     -v POSTGRES_DATA:/var/lib/postgresql/data \
     -p 5432:5432 \
     --network=pg-network \
@@ -70,7 +70,7 @@ python ingest_data.py \
   --password=root \
   --host=localhost \
   --port=5432 \
-  --db=demo \
+  --db=ny_taxi \
   --table_name=yellow_taxi_trips \
   --url=${URL}
 ```
@@ -93,7 +93,7 @@ docker run -it \
     --password=root \
     --host=pg-database \
     --port=5432 \
-    --db=demo \
+    --db=ny_taxi \
     --table_name=yellow_taxi_trips \
     --url=${URL}
 ```

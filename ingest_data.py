@@ -24,10 +24,10 @@ def main(params):
 
     # df.dropna(subset=["passenger_count"], inplace=True)
     # df["passenger_count"] = df["passenger_count"].astype(int)
-    df.head(n=0).to_sql(name="yellow_taxi_data", con=engine, if_exists="replace")
-    # df.to_sql(name="yellow_taxi_data", con=engine, if_exists="append")
-    # df.to_sql(name="yellow_taxi_data", con=engine, if_exists='append', chunksize=100000)
-    df.to_sql(name="yellow_taxi_data", con=engine, if_exists="replace")
+    df.head(n=0).to_sql(name="yellow_taxi_trips", con=engine, if_exists="replace")
+    # df.to_sql(name="yellow_taxi_trips", con=engine, if_exists="append")
+    # df.to_sql(name="yellow_taxi_trips", con=engine, if_exists='append', chunksize=100000)
+    df.to_sql(name="yellow_taxi_trips", con=engine, if_exists="replace")
 
 
 if __name__ == "__main__":
