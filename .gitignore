@@ -130,3 +130,5 @@ dmypy.json
 
 # added by me
 data/
+.vscode
+output.parquet
