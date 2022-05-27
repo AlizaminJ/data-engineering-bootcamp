@@ -75,7 +75,7 @@ python ingest_data.py \
   --url=${URL}
 ```
 
-- running in docker
+### running in docker
 
 - build the image
 ```
@@ -87,8 +87,8 @@ docker build -t taxi_ingest:v001 .
 URL='https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.parquet'
 
 docker run -it \
-  --network=pg-network \
-  taxi_ingest:v001 \
+    --network=pg-network \
+    taxi_ingest:v001 \
     --user=root \
     --password=root \
     --host=pg-database \
@@ -98,6 +98,11 @@ docker run -it \
     --url=${URL}
 ```
 
+# Docker compose
+```
+docker-compose up
+docker-compose down
+```
 
 
 # useful commands
