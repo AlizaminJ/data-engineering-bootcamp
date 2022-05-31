@@ -1,6 +1,9 @@
 # Week 1
 
-- data can be found on https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page , 2021-jan "yellow taxi trips":
+# DOCKER & POSTGRES
+<br>
+
+Data can be found on https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page , 2021-jan "yellow taxi trips":
 ```
 https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.parquet
 ```
@@ -120,3 +123,24 @@ docker exec -it <mycontainer> bash
 docker run -it MY_CONTAINER:1.0
 docker  build -t MY_IMAGE:1.0 .
 ```
+
+<br>
+<hr>
+<br>
+
+# GCP & TERRAFORM
+
+## GCP Services
+<img src="https://static.packt-cdn.com/products/9781788837675/graphics/assets/23d1d5bf-3655-464e-964c-96be3a490893.png">
+
+use the following in WSL for initialization instead of "gcloud auth application-default login"
+```
+gcloud init --console-only
+```
+
+## Terraform
+<a href="https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_1_basics_n_setup/1_terraform_gcp"> Setup</a>
+
+<br>
+<hr>
+<br>
