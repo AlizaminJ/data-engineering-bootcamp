@@ -130,10 +130,19 @@ docker  build -t MY_IMAGE:1.0 .
 
 # GCP & TERRAFORM
 
-## GCP Services
+Pre-Requisites
+- Terraform client installation: https://www.terraform.io/downloads
+- Cloud Provider account: https://console.cloud.google.com/
+
+
+## Google CLoud Platform
+
+- <a href="https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/2_gcp_overview.md">Setup</a>
+
+- GCP Services
 <img src="https://static.packt-cdn.com/products/9781788837675/graphics/assets/23d1d5bf-3655-464e-964c-96be3a490893.png">
 
-use the following in WSL for initialization instead of "gcloud auth application-default login"
+- use the following in WSL for initialization instead of "gcloud auth application-default login"
 ```
 gcloud init --console-only
 ```
@@ -141,6 +150,76 @@ gcloud init --console-only
 ## Terraform
 <a href="https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_1_basics_n_setup/1_terraform_gcp"> Setup</a>
 
+### Concepts
+
+#### Introduction
+
+1. What is [Terraform](https://www.terraform.io)?
+   * open-source tool by [HashiCorp](https://www.hashicorp.com), used for provisioning infrastructure resources
+   * supports DevOps best practices for change management
+   * Managing configuration files in source control to maintain an ideal provisioning state 
+     for testing and production environments
+2. What is IaC?
+   * Infrastructure-as-Code
+   * build, change, and manage your infrastructure in a safe, consistent, and repeatable way 
+     by defining resource configurations that you can version, reuse, and share.
+3. Some advantages
+   * Infrastructure lifecycle management
+   * Version control commits
+   * Very useful for stack-based deployments, and with cloud providers such as AWS, GCP, Azure, K8S…
+   * State-based approach to track resource changes throughout deployments
+
+
+#### Files
+
+* `main.tf`
+* `variables.tf`
+* Optional: `resources.tf`, `output.tf`
+* `.tfstate`
+
+#### Declarations
+* `terraform`: configure basic Terraform settings to provision your infrastructure
+   * `required_version`: minimum Terraform version to apply to your configuration
+   * `backend`: stores Terraform's "state" snapshots, to map real-world resources to your configuration.
+      * `local`: stores state file locally as `terraform.tfstate`
+   * `required_providers`: specifies the providers required by the current module
+* `provider`:
+   * adds a set of resource types and/or data sources that Terraform can manage
+   * The Terraform Registry is the main directory of publicly available providers from most major infrastructure platforms.
+* `resource`
+  * blocks to define components of your infrastructure
+  * Project modules/resources: google_storage_bucket, google_bigquery_dataset, google_bigquery_table
+* `variable` & `locals`
+  * runtime arguments and constants
+
+
+#### Execution steps
+1. `terraform init`: 
+    * Initializes & configures the backend, installs plugins/providers, & checks out an existing configuration from a version control 
+2. `terraform plan`:
+    * Matches/previews local changes against a remote state, and proposes an Execution Plan.
+3. `terraform apply`: 
+    * Asks for approval to the proposed plan, and applies changes to cloud
+4. `terraform destroy`
+    * Removes your stack from the Cloud
+
+## Execution
+```
+# Refresh service-account's auth-token for this session
+gcloud auth application-default login
+
+# Initialize state file (.tfstate)
+terraform init
+
+# Check changes to new infra plan
+terraform plan -var="project=<your-gcp-project-id>"
+
+# Create new infra
+terraform apply -var="project=<your-gcp-project-id>"
+
+# Delete infra after your work, to avoid costs on any running services
+terraform destroy
+```
 <br>
 <hr>
 <br>
