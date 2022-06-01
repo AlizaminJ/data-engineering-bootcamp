@@ -133,3 +133,5 @@ data/
 .vscode
 output.parquet
 variables.tf
+.terraform/
+.terraform .terraform-version .terraform.lock.hcl

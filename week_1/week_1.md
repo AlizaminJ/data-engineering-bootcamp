@@ -205,20 +205,28 @@ gcloud init --console-only
 
 ## Execution
 ```
+# gcloud cred
+export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/ny-rides.json
+gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+
+# setting project_id, e.g. "taxi-rides-ny-351921"
+PROJECT_NAME="taxi-rides-ny-351921"
+gcloud auth application-default set-quota-project ${PROJECT_NAME}
+
 # Refresh service-account's auth-token for this session
-gcloud auth application-default login
+# gcloud auth application-default login
 
 # Initialize state file (.tfstate)
 terraform init
 
 # Check changes to new infra plan
-terraform plan -var="project=<your-gcp-project-id>"
+terraform plan -var="project=taxi-rides-ny-351921"
 
 # Create new infra
-terraform apply -var="project=<your-gcp-project-id>"
+terraform apply -var="project=taxi-rides-ny-351921"
 
 # Delete infra after your work, to avoid costs on any running services
-terraform destroy
+terraform destroy -var="project=taxi-rides-ny-351921"
 ```
 <br>
 <hr>
